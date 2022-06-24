@@ -21,30 +21,27 @@ exports.getOrderStatus = (uuid) => new Promise((resolve, reject)=> {
             resolve(error);
         }
         resolve(body);
-
     })
 })
 
 
-exports.requestMarketBuy = function(){
+exports.requestMarketBuy = (symbol, amt) => new Promise((resolve, reject)=> {
 
     const API = "/v1/orders"
     const body = {
-        market: 'KRW-BTC',
+        market: symbol,
+        price: amt,
         side: 'bid',
-        price: '5000',
         ord_type: 'price',
     }
 
-    return new Promise((resolve, reject) => {
-        request(createPostOptions(API, body), function(error, response, body) {
-            if (error)
-                resolve(error)
-            resolve(body)
-        });
-    });
-
-}
+    request(createPostOptions(API, body), function(error, response, body) {
+        if (error) {
+            resolve(error);
+        }
+        resolve(body);
+    })
+})
 
 
 function createPostOptions(api, body){
