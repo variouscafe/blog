@@ -9,8 +9,6 @@ const server_url = 'https://api.upbit.com'
 
 
 
-
-
 exports.getOrderStatus = (uuid) => new Promise((resolve, reject)=> {
 
     const API = "/v1/order"
